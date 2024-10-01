@@ -34,10 +34,12 @@ app.post('/login', async (req, res) => {
 
         if (results.length > 0) {
             req.session.user = results[0];
+            req.session.loggedin = true;  // Set logged in status
+
             const role = results[0].role;
 
             if (role === 'admin') {
-                return res.redirect('/admin');
+                return res.redirect('/menuAdministrativo');
             } else if (role === 'tecnico') {
                 return res.redirect('/tecnico');
             } else if (role === 'cliente') {
@@ -48,6 +50,16 @@ app.post('/login', async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({ error: err.message });
+    }
+});
+
+// Ruta para el menú administrativo
+app.get('/menuAdministrativo', (req, res) => {
+    if (req.session.loggedin === true) {
+        const nombreUsuario = req.session.user.name; // Use user session data
+        res.render('administrativo/menuadministrativo.hbs', { nombreUsuario });
+    } else {
+        res.redirect('/login');
     }
 });
 
