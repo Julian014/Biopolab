@@ -66,6 +66,18 @@ app.get('/menuAdministrativo', (req, res) => {
 
 
 
+// Ruta para el menú administrativo
+app.get('/geolocalizacion', (req, res) => {
+    if (req.session.loggedin === true) {
+        const nombreUsuario = req.session.user.name; // Use user session data
+        res.render('administrativo/mapa/ver_mapa.hbs', { nombreUsuario });
+    } else {
+        res.redirect('/login');
+    }
+});
+
+
+
 
 
 

@@ -94,9 +94,10 @@
         justify-content: space-between;
         align-items: center;
         padding: 15px;
-    background-color: var(--primary-color); /* Coral navbar */
+    background-color: white ; /* Coral navbar */
         border-radius: 10px;
         margin-bottom: 20px;
+        color: black;
     }
 
     .top-right {
@@ -251,19 +252,53 @@
         color: white;
         border-radius: 5px;
     }
+    A{
+
+text-decoration: none;
+
+
+    }
+
+.toggle-menu-btn {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 20px; /* Ajuste de espaciado entre los íconos */
+    display: flex;
+    align-items: center;
+}
+.hidden-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.sidebar {
+    transition: transform 0.3s ease;
+}
+
+.expanded-content {
+    width: 100% !important; /* Expande el contenido cuando el sidebar está oculto */
+    transition: width 0.3s ease;
+}
+
 </style>
 
 <body>
     <div class="container">
+
+
+
+
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <img class="logo" src="https://www.biopolab.com/wp-content/uploads/2023/06/Logotipo-Biopolab.webp" alt="AdminKit Logo">
-            <br>
-               <br>
-                <p>MENU</p>
+       <div class="sidebar-header">
 
-
-            </div>
+    <img class="logo" src="https://www.biopolab.com/wp-content/uploads/2023/06/Logotipo-Biopolab.webp" alt="AdminKit Logo">
+    <br>
+    <br>
+    <p>MENU</p>
+</div>
             <ul class="sidebar-menu">
                 <li class="menu-item">
                     <i class="fas fa-user"></i> USUARIOS
@@ -306,28 +341,51 @@
                 <li class="menu-item">
                     <i class="fas fa-map-marker-alt"></i> MAPA-GEOLOCALIZACION
                     <ul class="submenu">
-                        <li>Ver Mapa</li>
+                        
+                        <li><a href="/geolocalizacion">VER MAPA</a></li>
                         <li>Agregar Ubicación</li>
                     </ul>
                 </li>
             </ul>
+    
+
+     
         </aside>
 
         <section class="main-content">
-            <nav class="top-navbar">
-                <div class="brand">BioPolab-Administracion</div>
-                <div class="top-right">
-                    <i class="fas fa-bell"></i> <span class="badge">9</span>
-                    <i class="fas fa-envelope"></i> <span class="badge">22</span>
-                    <div class="profile-menu">
-                        <i class="fas fa-user-circle" id="profile-icon"></i>
-                        <div id="dropdown-menu" class="dropdown-menu hidden">
-                            <a href="#">Editar</a>
-                            <a href="/logout">Cerrar Sesión</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+
+
+
+
+
+
+
+
+<nav class="top-navbar">
+    <div class="brand">BioPolab-Administracion</div>
+    <div class="top-right">
+        <i class="fas fa-bell"></i> <span class="badge"></span>
+        <i class="fas fa-envelope"></i> <span class="badge"></span>
+        <div class="profile-menu">
+            <i class="fas fa-user-circle" id="profile-icon"></i>
+            <div id="dropdown-menu" class="dropdown-menu hidden">
+                <a href="#">Editar</a>
+                <a href="/logout">Cerrar Sesión</a>
+            </div>
+        </div>
+        <!-- Aquí está el botón corregido -->
+        <button id="toggle-menu" class="toggle-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+
+
+
+
+
+
             <div class="dashboard-content">
                 <div class="card welcome">
                     <h2>BIENVENIDO</h2>
@@ -480,6 +538,14 @@
                 this.classList.add('active');
             });
         });
+        // Toggle sidebar visibility
+document.getElementById('toggle-menu').addEventListener('click', function () {
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    sidebar.classList.toggle('hidden-sidebar');
+    mainContent.classList.toggle('expanded-content');
+});
+
     </script>
 </body>
 </html>
