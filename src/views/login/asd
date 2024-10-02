@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLap</title>
+    <!-- Use Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+            color: #fff;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #081b29;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #eee;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 1200px;
+            height: 85vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 50px 0 #00a6bc;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 550px;
+            height: 100%;
+            background: linear-gradient(to right, #0ef, #c800ff);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+            padding-right: 70px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .wel_text {
+            font-size: 40px;
+            margin-top: -50px;
+            line-height: 50px;
+        }
+
+        .para {
+            margin-top: 10px;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 1px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 35px;
+        }
+
+        .inp {
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            position: relative; /* Allows icon positioning */
+        }
+
+        .input {
+            border: none;
+            outline: none;
+            background: none;
+            width: 260px;
+            margin-top: 40px;
+            padding-right: 10px;
+            font-size: 17px;
+            color: #0ef;
+        }
+
+        .fa {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0ef;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            width: 288px;
+            margin-top: 25px;
+            padding: 10px 0;
+            font-size: 20px;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #0ef, #c800ff);
+        }
+
+        .footer {
+            margin-top: 30px;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+
+        .link {
+            color: #0ef;
+            text-decoration: none;
+        }
+          /* Media queries para dispositivos móviles */
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+                max-width: 90%;
+                height: auto;
+                border: none;
+            }
+
+            .banner {
+                display: none; /* Ocultamos el banner en pantallas más pequeñas */
+            }
+
+            .form {
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .wel_text {
+                font-size: 24px;
+                margin-top: 0;
+            }
+
+            .input {
+                max-width: 100%;
+            }
+
+            .submit {
+                max-width: 100%;
+            }
+        }
+          /* Media query para pantallas más pequeñas */
+        @media screen and (max-width: 480px) {
+            .wrapper {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .wel_text {
+                font-size: 24px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .input {
+                font-size: 14px;
+            }
+
+            .submit {
+                font-size: 16px;
+                padding: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+<form action="/login" method="POST" class="form">
+            <h1 class="title">Inicio</h1>
+            <div class="inp">
+                <i class="fa fa-envelope"></i> <!-- Email icon -->
+                <input type="text" name="email" id="" class="input" placeholder="Correo electrónico:">
+            </div>
+            <div class="inp">
+                <i class="fa fa-lock"></i> <!-- Password icon -->
+                <input type="password" name="password" id="password" class="input" placeholder="Contraseña">
+            </div>
+            <button class="submit">Iniciar Sesión</button>
+        </form>
+
+        <div class="banner">
+            <h1 class="wel_text">BioLap S.A.<br/></h1>
+            <p class="para">Soluciones Médicas.<br/> <br/> login</p>
+        </div>
+    </div>
+</body>
+</html>
