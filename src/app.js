@@ -64,6 +64,21 @@ app.get('/menuAdministrativo', (req, res) => {
     }
 });
 
+
+
+
+
+
+// Ruta para manejar el cierre de sesión
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error al cerrar sesión' });
+        }
+        res.redirect('/login');  // Redirige al usuario a la página de login
+    });
+});
+
 // Iniciar el servidor
 app.listen(3000, () => {
     console.log('Servidor corriendo en el puerto 3000');
