@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>BioPolab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <Style>
     :root {
-    --sidebar-bg: #252636;
-    --dark-bg: #313348;
+    --bg-dark: #252636;
+    --bg-darker: #313348;
     --primary-color: #6f6486;
-    --text-light: #E5E7EB;
-    --text-dark: #9CA3AF;
+    --text-light: #e5e7eb;
+    --text-muted: #9ca3af;
+    --accent-color: #dc3545;
+    --sidebar-width: 250px;
 }
 
 * {
@@ -26,76 +28,57 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--dark-bg);
+    background-color: var(--bg-darker);
     color: var(--text-light);
     display: flex;
 }
 
-.sidebar {
-    background-color: var(--sidebar-bg);
-    width: 250px;
-    height: 100vh;
-    padding: 20px;
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-dark);
+    padding: 20px;
+    height: 100vh;
 }
 
 .sidebar-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
 }
 
-.profile-pic {
-    width: 65px;
-    border-radius: 50%;
-    margin-right: 10px;
+.sidebar-header img.logo {
+    width: 50px;
+    margin-bottom: 10px;
 }
 
-.user-info h5 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.user-info p {
-    margin: 0;
-    font-size: 12px;
-    color: var(--text-dark);
-}
-
-.search-bar {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 10px;
-    background: var(--dark-bg);
-    border: none;
+.sidebar-header p {
+    font-size: 20px;
     color: var(--text-light);
-}
-
-.search-bar i {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .sidebar-menu {
     list-style: none;
-    width: 100%;
+    padding: 0;
 }
 
 .sidebar-menu li {
-    padding: 15px 0;
+    padding: 15px 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     color: var(--text-light);
+}
+
+.sidebar-menu li:hover {
+    background-color: var(--primary-color);
+    border-radius: 10px;
 }
 
 .sidebar-menu li i {
@@ -103,162 +86,324 @@ body {
 }
 
 .main-content {
-    flex-grow: 1;
+    width: calc(100% - var(--sidebar-width));
     padding: 20px;
 }
 
-.navbar {
+.top-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px;
     background-color: var(--primary-color);
-    padding: 15px 20px;
-    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.dashboard {
-    margin-top: 20px;
-}
-
-.welcome h2 {
-    font-size: 24px;
-}
-
-.metrics {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.metric-box {
-    background-color: var(--dark-bg);
-    padding: 20px;
-    border-radius: 8px;
+.top-right {
     display: flex;
     align-items: center;
 }
 
-.metric-box i {
+.top-right i {
+    margin-left: 20px;
     font-size: 24px;
-    margin-right: 10px;
+    position: relative;
 }
 
-.charts {
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.dashboard-content {
     display: flex;
+    flex-direction: column;
+}
+
+.card {
+    background-color: var(--bg-dark);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+}
+
+.stat-icon {
+    font-size: 40px;
+    color: var(--accent-color);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 }
 
 .chart-container {
-    width: 45%;
-    background-color: var(--dark-bg);
     padding: 20px;
-    border-radius: 8px;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
 }
+/* Dropdown menu styling */
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    width: 150px;
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-light);
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+/* Class to toggle visibility */
+.hidden {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+/* Submenu styles */
+.submenu {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0; /* Elimina cualquier margen que empuje el menú */
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute; /* Se posiciona de manera absoluta respecto al contenedor padre */
+    top: 100%; /* Se despliega justo debajo del elemento */
+    left: 0;
+    width: 200px; /* Define un ancho fijo o ajusta según tu preferencia */
+    background-color: var(--bg-dark); /* Asegura que el fondo del menú sea consistente */
+    border-radius: 5px;
+    z-index: 1000;
+    transition: max-height 0.3s ease-out;
+}
+
+.menu-item {
+    display: block; /* Asegura que el contenido del menú ocupe toda la fila */
+    margin-bottom: 10px;
+    position: relative; /* Necesario para que el submenu se posicione correctamente debajo */
+}
+
+
+.menu-item i {
+    margin-right: 10px; /* Mantiene el icono alineado con el texto */
+}
+
+.submenu.show {
+    display: block;
+    max-height: 500px; /* Ajusta según el número de elementos del menú */
+    transition: max-height 0.3s ease-in;
+}
+/* Estilo para el estado hover de los elementos del menú */
+.menu-item:hover {
+    background-color: var(--primary-color); /* El color cuando pasas el mouse */
+    color: white;
+    border-radius: 10px;
+}
+
+/* Estilo para el ítem activo seleccionado (sin hover) */
+.menu-item.active {
+    background-color: #4b6b96; /* Color fijo cuando está seleccionado */
+    color: white;
+    border-radius: 10px;
+}
+
+/* Estilo del submenu cuando se selecciona un ítem */
+.submenu li.active {
+    background-color: #d9534f; /* Color fijo cuando está seleccionado */
+    color: white;
+    border-radius: 5px;
+}
+
+/* Hover para los submenús */
+.submenu li:hover {
+    background-color: var(--primary-color); /* Color cuando pasas el mouse */
+    color: white;
+    border-radius: 5px;
+}
+/* Hover para los elementos dentro del submenu */
+.submenu li:hover {
+    background-color: var(--primary-color); /* Cambia esto si quieres otro color de hover */
+    color: white;
+    border-radius: 5px; /* Opcional para añadir bordes redondeados */
+}
+
+/* Estilo para cuando un elemento de submenu está seleccionado (activo) */
+.submenu li.active {
+    background-color: #4b6b96; /* Color que tendrá el item seleccionado */
+    color: white;
+    border-radius: 5px;
+}
+
 
 </Style>
 <body>
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <img class="profile-pic" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="Profile Picture">
-            <div class="user-info">
-                <h5>Jone Doe</h5>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </div>
+    <div class="container">
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <img class="logo" src="https://example.com/logo.png" alt="AdminKit Logo">
+        <p>MENU</p>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <i class="fas fa-user"></i> USUARIOS
+            <ul class="submenu">
+                <li>Agregar Usuario</li>
+                <li>Ver Usuarios</li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <i class="fas fa-file-alt"></i> TAREAS
+            <ul class="submenu">
+                <li>Crear Tarea</li>
+                <li>Ver Tareas</li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <i class="fas fa-calendar"></i> CALENDARIO
+            <ul class="submenu">
+                <li>Ver Calendario</li>
+                <li>Agregar Evento</li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <i class="fas fa-chart-line"></i> SEGUIMIENTO
+            <ul class="submenu">
+                <li>Ver Reportes</li>
+                <li>Generar Reporte</li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <i class="fas fa-cogs"></i> CONFIGURACION
+            <ul class="submenu">
+                <li>Preferencias</li>
+                <li>Seguridad</li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <i class="fas fa-map-marker-alt"></i> MAPA-GEOLOCALIZACION
+            <ul class="submenu">
+                <li>Ver Mapa</li>
+                <li>Agregar Ubicación</li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+
+        <section class="main-content">
+            <nav class="top-navbar">
+                <div class="brand">BioPolab-Administracion</div>
+             <div class="top-right">
+    <i class="fas fa-bell"></i> <span class="badge">9</span>
+    <i class="fas fa-envelope"></i> <span class="badge">22</span>
+    <div class="profile-menu">
+        <i class="fas fa-user-circle" id="profile-icon"></i>
+        <div id="dropdown-menu" class="dropdown-menu hidden">
+            <a href="#">Editar</a>
+    <a href="/logout">Cerrar Sesión</a>
         </div>
+    </div>
+</div>
 
-        <div class="search-bar">
-            <input type="text" placeholder="Search here">
-            <i class="fas fa-search"></i>
-        </div>
-
-        <ul class="sidebar-menu">
-            <li><i class="fas fa-home"></i> Dashboard</li>
-            <li><i class="fas fa-folder"></i> File Manager</li>
-            <li><i class="fas fa-calendar-alt"></i> Calendar</li>
-            <li><i class="fas fa-envelope"></i> Mailbox</li>
-            <li><i class="fas fa-shopping-cart"></i> Ecommerce</li>
-            <li><i class="fas fa-project-diagram"></i> Projects</li>
-            <li><i class="fas fa-cogs"></i> Settings</li>
-            <li><i class="fas fa-chart-pie"></i> Charts</li>
-            <li><i class="fas fa-map-marker-alt"></i> Maps</li>
-        </ul>
-    </aside>
-
-    <section class="main-content">
-        <nav class="navbar">
-            <div class="logo">adminkit</div>
-            <div class="settings">
-                <i class="fas fa-cog"></i>
-                <i class="fas fa-bell"></i><span>98</span>
-                <i class="fas fa-envelope"></i><span>23</span>
-            </div>
-        </nav>
-
-        <div class="dashboard">
-            <div class="welcome">
-                <h2>Welcome to Dashboard</h2>
-                <p>Hello Jone Doe, welcome to your awesome dashboard!</p>
-            </div>
-
-            <div class="metrics">
-                <div class="metric-box">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>1,245</h3>
-                        <p>Emails</p>
+            </nav>
+            <div class="dashboard-content">
+                <div class="card welcome">
+                    <h2>BIENVENIDO</h2>
+                    <p>Hello {{name}}, </p>
+                </div>
+                <div class="grid-container">
+                    <div class="card stat">
+                        <i class="fas fa-envelope stat-icon"></i>
+                        <div>
+                            <h3>1,245</h3>
+                            <p>Emails</p>
+                        </div>
+                    </div>
+                    <div class="card stat">
+                        <i class="fas fa-project-diagram stat-icon"></i>
+                        <div>
+                            <h3>34</h3>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+                    <div class="card stat">
+                        <i class="fas fa-users stat-icon"></i>
+                        <div>
+                            <h3>5,245</h3>
+                            <p>Users</p>
+                        </div>
+                    </div>
+                    <div class="card chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="card chart-container">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                    <div class="card settings">
+                        <h3>Settings</h3>
+                        <canvas id="settingsChart"></canvas>
                     </div>
                 </div>
-                <div class="metric-box">
-                    <i class="fas fa-file-alt"></i>
-                    <div>
-                        <h3>34</h3>
-                        <p>Projects</p>
-                    </div>
-                </div>
-                <div class="metric-box">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <h3>5,245</h3>
-                        <p>Users</p>
-                    </div>
-                </div>
             </div>
+        </section>
+    </div>
 
-            <div class="charts">
-                <div class="chart-container">
-                    <canvas id="barChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="lineChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Include Chart.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
     <script>
-        // Bar Chart
+// Bar Chart
 const barCtx = document.getElementById('barChart').getContext('2d');
 new Chart(barCtx, {
     type: 'bar',
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'August', 'September'],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
         datasets: [{
-            label: 'Emails',
-            data: [45, 25, 40, 20, 60, 20, 35, 25],
+            label: 'Data Set 1',
+            data: [45, 25, 50, 30, 55, 25, 45, 20],
             backgroundColor: '#0d6efd',
-            borderColor: 'transparent',
-            borderWidth: 2,
         }, {
-            label: 'Projects',
-            data: [20, 40, 20, 50, 25, 40, 25, 10],
+            label: 'Data Set 2',
+            data: [20, 40, 30, 45, 25, 35, 20, 50],
             backgroundColor: '#dc3545',
-            borderColor: 'transparent',
-            borderWidth: 2,
         }]
     },
     options: {
+        responsive: true,
         scales: {
             y: {
                 beginAtZero: true
@@ -272,24 +417,23 @@ const lineCtx = document.getElementById('lineChart').getContext('2d');
 new Chart(lineCtx, {
     type: 'line',
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'August', 'September'],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
         datasets: [{
-            label: 'Emails',
-            data: [4, 20, 5, 20, 5, 25, 9, 18],
-            backgroundColor: 'transparent',
+            label: 'Data Set 1',
+            data: [10, 20, 15, 30, 25, 20, 30, 35],
             borderColor: '#0d6efd',
-            borderWidth: 2,
-            tension: 0.4
+            fill: false,
+            tension: 0.1
         }, {
-            label: 'Projects',
-            data: [11, 25, 10, 25, 10, 30, 14, 23],
-            backgroundColor: 'transparent',
+            label: 'Data Set 2',
+            data: [15, 25, 20, 35, 30, 25, 40, 45],
             borderColor: '#dc3545',
-            borderWidth: 2,
-            tension: 0.4
+            fill: false,
+            tension: 0.1
         }]
     },
     options: {
+        responsive: true,
         scales: {
             y: {
                 beginAtZero: true
@@ -297,7 +441,58 @@ new Chart(lineCtx, {
         }
     }
 });
+document.getElementById('profile-icon').addEventListener('click', function() {
+    var dropdown = document.getElementById('dropdown-menu');
+    dropdown.classList.toggle('show');
+});
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('#profile-icon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-menu");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+// Selección del item principal
+const menuItems = document.querySelectorAll('.menu-item');
+
+menuItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Remover la clase active de todos los menús
+        menuItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+
+        // Mostrar o esconder submenús
+        const submenu = this.querySelector('.submenu');
+        if (submenu) {
+            submenu.classList.toggle('show');
+            submenu.style.maxHeight = submenu.classList.contains('show') ? submenu.scrollHeight + "px" : null;
+        }
+    });
+});
+
+// Selección de los submenús
+const submenuItems = document.querySelectorAll('.submenu li');
+
+submenuItems.forEach(subitem => {
+    subitem.addEventListener('click', function(e) {
+        e.stopPropagation();  // Prevenir que el clic cierre el submenú
+
+        // Remover la clase active de todos los submenús
+        submenuItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
 
     </script>
+</body>
+</html>
+
 </body>
 </html>

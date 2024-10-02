@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,227 +7,321 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
 </head>
-<Style>
-    :root {
-    --bg-dark: #252636;
-    --bg-darker: #313348;
-    --primary-color: #6f6486;
-    --text-light: #e5e7eb;
-    --text-muted: #9ca3af;
-    --accent-color: #dc3545;
+<style>
+:root {
+    --bg-dark: #1d1f27; /* Darker background for better contrast */
+    --bg-darker: #15161c; /* Even darker background */
+    --primary-color: #ff7f50; /* Coral color for a striking primary tone */
+    --text-light: #f5f5f5; /* Light text for readability */
+    --text-muted: #b0b0b0; /* Softer muted text */
+    --accent-color: #4caf50; /* Green accent for highlights */
     --sidebar-width: 250px;
 }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-darker);
+        color: var(--text-light);
+        display: flex;
+    }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-darker);
-    color: var(--text-light);
-    display: flex;
-}
+    .container {
+        display: flex;
+        width: 100%;
+    }
 
-.container {
-    display: flex;
-    width: 100%;
-}
+    .sidebar {
+        width: var(--sidebar-width);
+        background-color: var(--bg-dark);
+        padding: 20px;
+        height: 100vh;
+    }
 
-.sidebar {
-    width: var(--sidebar-width);
-    background-color: var(--bg-dark);
-    padding: 20px;
-    height: 100vh;
-}
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
 
-.sidebar-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 30px;
-}
+    .sidebar-header img.logo {
+        width: 200px;
+        margin-bottom: 10px;
+    }
 
-.sidebar-header img.logo {
-    width: 50px;
-    margin-bottom: 10px;
-}
+    .sidebar-header p {
+        font-size: 20px;
+        color: var(--text-light);
+    }
 
-.sidebar-header p {
-    font-size: 20px;
-    color: var(--text-light);
-}
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+    }
 
-.sidebar-menu {
-    list-style: none;
-    padding: 0;
-}
+    .sidebar-menu li {
+        padding: 15px 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: var(--text-light);
+        position: relative;
+    }
 
-.sidebar-menu li {
-    padding: 15px 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    color: var(--text-light);
-}
+    .sidebar-menu li:hover {
+    background-color: var(--primary-color); /* Highlighted coral hover */
+        border-radius: 10px;
+    }
 
-.sidebar-menu li:hover {
-    background-color: var(--primary-color);
-    border-radius: 10px;
-}
+    .sidebar-menu li i {
+        margin-right: 10px;
+    }
 
-.sidebar-menu li i {
-    margin-right: 10px;
-}
+    .main-content {
+        width: calc(100% - var(--sidebar-width));
+        padding: 20px;
+    }
 
-.main-content {
-    width: calc(100% - var(--sidebar-width));
-    padding: 20px;
-}
+    .top-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    background-color: var(--primary-color); /* Coral navbar */
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
 
-.top-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
+    .top-right {
+        display: flex;
+        align-items: center;
+    }
 
-.top-right {
-    display: flex;
-    align-items: center;
-}
+    .top-right i {
+        margin-left: 20px;
+        font-size: 24px;
+        position: relative;
+    }
 
-.top-right i {
-    margin-left: 20px;
-    font-size: 24px;
-    position: relative;
-}
+    .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 5px 8px;
+        border-radius: 50%;
+        font-size: 12px;
+    }
 
-.badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 5px 8px;
-    border-radius: 50%;
-    font-size: 12px;
-}
+    .dashboard-content {
+        display: flex;
+        flex-direction: column;
+    }
 
-.dashboard-content {
-    display: flex;
-    flex-direction: column;
-}
+    .card {
+        background-color: var(--bg-dark);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
 
-.card {
-    background-color: var(--bg-dark);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
+    .stat {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-.stat {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+    .stat-icon {
+        font-size: 40px;
+        color: var(--accent-color);
+    }
 
-.stat-icon {
-    font-size: 40px;
-    color: var(--accent-color);
-}
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-}
+    .chart-container {
+        padding: 20px;
+        background-color: var(--bg-dark);
+        border-radius: 10px;
+    }
 
-.chart-container {
-    padding: 20px;
-    background-color: var(--bg-dark);
-    border-radius: 10px;
-}
-/* Dropdown menu styling */
-.profile-menu {
-    position: relative;
-    display: inline-block;
-}
+    /* Dropdown menu styling */
+    .profile-menu {
+        position: relative;
+        display: inline-block;
+    }
 
-.dropdown-menu {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: var(--bg-dark);
-    border-radius: 10px;
-    padding: 10px;
-    display: none;
-    flex-direction: column;
-    width: 150px;
-    z-index: 1;
-}
+    .dropdown-menu {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        background-color: var(--bg-dark);
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
+        flex-direction: column;
+        width: 150px;
+        z-index: 1;
+    }
 
-.dropdown-menu a {
-    padding: 10px;
-    text-decoration: none;
-    color: var(--text-light);
-    display: block;
-}
+    .dropdown-menu a {
+        padding: 10px;
+        text-decoration: none;
+        color: var(--text-light);
+        display: block;
+    }
 
-.dropdown-menu a:hover {
-    background-color: var(--primary-color);
-    border-radius: 5px;
-}
+    .dropdown-menu a:hover {
+        background-color: var(--primary-color);
+        border-radius: 5px;
+    }
 
-/* Class to toggle visibility */
-.hidden {
-    display: none;
-}
+    /* Class to toggle visibility */
+    .hidden {
+        display: none;
+    }
 
-.show {
-    display: flex;
-}
+    .show {
+        display: flex;
+    }
 
-</Style>
+    /* Submenu styles */
+    .submenu {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0;
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 200px;
+        background-color: var(--bg-dark);
+        border-radius: 5px;
+        z-index: 1000;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .menu-item {
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .submenu.show {
+        display: block;
+        max-height: 500px;
+        transition: max-height 0.3s ease-in;
+    }
+
+    .submenu li {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .submenu li:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 5px;
+    }
+
+    /* Active item styles */
+    .menu-item.active {
+        background-color: #4b6b96;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .submenu li.active {
+        background-color: #4b6b96;
+        color: white;
+        border-radius: 5px;
+    }
+</style>
+
 <body>
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img class="logo" src="https://example.com/logo.png" alt="AdminKit Logo">
+                <img class="logo" src="https://www.biopolab.com/wp-content/uploads/2023/06/Logotipo-Biopolab.webp" alt="AdminKit Logo">
+            <br>
+               <br>
                 <p>MENU</p>
+
+
             </div>
             <ul class="sidebar-menu">
-                <li><i class="fas fa-user"></i> USUARIOS</li>
-                <li><i class="fas fa-file-alt"></i> TAREAS</li>
-                <li><i class="fas fa-calendar"></i> CALENDARIO</li>
-                <li><i class="fas fa-chart-line"></i> SEGUIMIENTO</li>
-                <li><i class="fas fa-cogs"></i> CONFIGURACION</li>
-                <li><i class="fas fa-map-marker-alt"></i> MAPA-GEOLOCALIZACION</li>
+                <li class="menu-item">
+                    <i class="fas fa-user"></i> USUARIOS
+                    <ul class="submenu">
+                        <li>Agregar Usuario</li>
+                        <li>Ver Usuarios</li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-file-alt"></i> TAREAS
+                    <ul class="submenu">
+                        <li>Crear Tarea</li>
+                        <li>Ver Tareas</li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar"></i> CALENDARIO
+                    <ul class="submenu">
+                        <li>Ver Calendario</li>
+                        <li>Agregar Evento</li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-chart-line"></i> SEGUIMIENTO
+                    <ul class="submenu">
+                        <li>Ver Reportes</li>
+                        <li>Generar Reporte</li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-cogs"></i> CONFIGURACION
+                    <ul class="submenu">
+                        <li>Preferencias</li>
+                        <li>Seguridad</li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-map-marker-alt"></i> MAPA-GEOLOCALIZACION
+                    <ul class="submenu">
+                        <li>Ver Mapa</li>
+                        <li>Agregar Ubicación</li>
+                    </ul>
+                </li>
             </ul>
         </aside>
+
         <section class="main-content">
             <nav class="top-navbar">
                 <div class="brand">BioPolab-Administracion</div>
-             <div class="top-right">
-    <i class="fas fa-bell"></i> <span class="badge">9</span>
-    <i class="fas fa-envelope"></i> <span class="badge">22</span>
-    <div class="profile-menu">
-        <i class="fas fa-user-circle" id="profile-icon"></i>
-        <div id="dropdown-menu" class="dropdown-menu hidden">
-            <a href="#">Editar</a>
-    <a href="/logout">Cerrar Sesión</a>
-        </div>
-    </div>
-</div>
-
+                <div class="top-right">
+                    <i class="fas fa-bell"></i> <span class="badge">9</span>
+                    <i class="fas fa-envelope"></i> <span class="badge">22</span>
+                    <div class="profile-menu">
+                        <i class="fas fa-user-circle" id="profile-icon"></i>
+                        <div id="dropdown-menu" class="dropdown-menu hidden">
+                            <a href="#">Editar</a>
+                            <a href="/logout">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="dashboard-content">
                 <div class="card welcome">
@@ -274,82 +368,113 @@ body {
     <!-- Include Chart.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
     <script>
-// Bar Chart
-const barCtx = document.getElementById('barChart').getContext('2d');
-new Chart(barCtx, {
-    type: 'bar',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
-        datasets: [{
-            label: 'Data Set 1',
-            data: [45, 25, 50, 30, 55, 25, 45, 20],
-            backgroundColor: '#0d6efd',
-        }, {
-            label: 'Data Set 2',
-            data: [20, 40, 30, 45, 25, 35, 20, 50],
-            backgroundColor: '#dc3545',
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+                datasets: [{
+                    label: 'Data Set 1',
+                    data: [45, 25, 50, 30, 55, 25, 45, 20],
+                    backgroundColor: '#0d6efd',
+                }, {
+                    label: 'Data Set 2',
+                    data: [20, 40, 30, 45, 25, 35, 20, 50],
+                    backgroundColor: '#dc3545',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+                datasets: [{
+                    label: 'Data Set 1',
+                    data: [10, 20, 15, 30, 25, 20, 30, 35],
+                    borderColor: '#0d6efd',
+                    fill: false,
+                    tension: 0.1
+                }, {
+                    label: 'Data Set 2',
+                    data: [15, 25, 20, 35, 30, 25, 40, 45],
+                    borderColor: '#dc3545',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Toggle profile dropdown menu
+        document.getElementById('profile-icon').addEventListener('click', function () {
+            var dropdown = document.getElementById('dropdown-menu');
+            dropdown.classList.toggle('show');
+        });
+
+        // Close dropdown if clicked outside
+        window.onclick = function (event) {
+            if (!event.target.matches('#profile-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
             }
         }
-    }
-});
+        
 
-// Line Chart
-const lineCtx = document.getElementById('lineChart').getContext('2d');
-new Chart(lineCtx, {
-    type: 'line',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
-        datasets: [{
-            label: 'Data Set 1',
-            data: [10, 20, 15, 30, 25, 20, 30, 35],
-            borderColor: '#0d6efd',
-            fill: false,
-            tension: 0.1
-        }, {
-            label: 'Data Set 2',
-            data: [15, 25, 20, 35, 30, 25, 40, 45],
-            borderColor: '#dc3545',
-            fill: false,
-            tension: 0.1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-document.getElementById('profile-icon').addEventListener('click', function() {
-    var dropdown = document.getElementById('dropdown-menu');
-    dropdown.classList.toggle('show');
-});
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('#profile-icon')) {
-        var dropdowns = document.getElementsByClassName("dropdown-menu");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
+        // Toggle submenu visibility
+        const menuItems = document.querySelectorAll('.menu-item');
 
+        menuItems.forEach(item => {
+            item.addEventListener('click', function () {
+                // Remove active class from all menu items
+                menuItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show or hide the submenu
+                const submenu = this.querySelector('.submenu');
+                if (submenu) {
+                    submenu.classList.toggle('show');
+                    submenu.style.maxHeight = submenu.classList.contains('show') ? submenu.scrollHeight + "px" : null;
+                }
+            });
+        });
+
+        // Handle submenu item selection
+        const submenuItems = document.querySelectorAll('.submenu li');
+
+        submenuItems.forEach(subitem => {
+            subitem.addEventListener('click', function (e) {
+                e.stopPropagation();  // Prevent click from closing the submenu
+
+                // Remove active class from all submenu items
+                submenuItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
     </script>
-</body>
-</html>
-
 </body>
 </html>
