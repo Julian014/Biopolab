@@ -31,11 +31,11 @@
         display: flex;
     }
 
-    .container {
-        display: flex;
-        width: 100%;
-    }
-
+.container {
+    display: flex;
+    width: 100%;
+    transition: width 0.3s ease; /* Añadimos transición suave para el contenedor */
+}
     .sidebar {
         width: var(--sidebar-width);
         background-color: var(--bg-dark);
@@ -84,10 +84,20 @@
         margin-right: 10px;
     }
 
-    .main-content {
-        width: calc(100% - var(--sidebar-width));
-        padding: 20px;
-    }
+.sidebar.hidden-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.main-content {
+    width: calc(100% - var(--sidebar-width)); /* Cuando el sidebar está visible */
+    padding: 20px;
+    transition: width 0.3s ease; /* Transición suave */
+}
+
+.main-content.expanded-content {
+    width: 100% !important; /* Ancho completo cuando el sidebar está oculto */
+}
 
     .top-navbar {
         display: flex;
@@ -278,11 +288,45 @@ text-decoration: none;
     transition: transform 0.3s ease;
 }
 
-.expanded-content {
-    width: 100% !important; /* Expande el contenido cuando el sidebar está oculto */
-    transition: width 0.3s ease;
+
+.main-content {
+    width: calc(100% - var(--sidebar-width)); /* Ancho calculado cuando el menú está visible */
+    padding: 20px;
+    transition: width 0.3s ease; /* Transición suave */
 }
 
+
+
+
+
+
+.sidebar.hidden-sidebar ~ .main-content {
+    width: 100% !important; /* Ancho completo cuando el menú está oculto */
+}
+
+
+
+
+
+.sidebar.hidden-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.main-content {
+    width: calc(100% - var(--sidebar-width)); /* Ancho calculado cuando el menú está visible */
+    padding: 20px;
+    transition: width 0.3s ease; /* Transición suave */
+}
+
+.main-content.expanded-content {
+    width: 100% !important; /* Ancho completo cuando el menú está oculto */
+}
+#home{
+
+    text-decoration: none;
+    color: white;
+}
 </style>
 
 <body>
@@ -300,6 +344,10 @@ text-decoration: none;
     <p>MENU</p>
 </div>
             <ul class="sidebar-menu">
+                     <li class="menu-item">
+                    <i class="fas fa-home"></i> <a id="home" href="/menuAdministrativo">INICIO</a> 
+                 
+                </li>
                 <li class="menu-item">
                     <i class="fas fa-user"></i> USUARIOS
                     <ul class="submenu">
@@ -307,6 +355,9 @@ text-decoration: none;
                         <li>Ver Usuarios</li>
                     </ul>
                 </li>
+
+
+                
                 <li class="menu-item">
                     <i class="fas fa-file-alt"></i> TAREAS
                     <ul class="submenu">
@@ -351,6 +402,12 @@ text-decoration: none;
 
      
         </aside>
+
+
+
+
+
+
 
         <section class="main-content">
 
@@ -542,8 +599,16 @@ text-decoration: none;
 document.getElementById('toggle-menu').addEventListener('click', function () {
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
+
+    // Toggle visibility of the sidebar
     sidebar.classList.toggle('hidden-sidebar');
-    mainContent.classList.toggle('expanded-content');
+
+    // Adjust the main content width accordingly
+    if (sidebar.classList.contains('hidden-sidebar')) {
+        mainContent.classList.add('expanded-content');
+    } else {
+        mainContent.classList.remove('expanded-content');
+    }
 });
 
     </script>
